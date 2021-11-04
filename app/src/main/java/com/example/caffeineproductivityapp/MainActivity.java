@@ -8,40 +8,56 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    int amount, time;
+    String amount, time;
     EditText amountInput;
     EditText timeInput;
     Button entryButton;
-    TextView amountText;
-    TextView timeText;
+    List<String> list = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         amountInput = findViewById(R.id.amountInput);
         timeInput = findViewById(R.id.timeInput);
-        amountText = findViewById(R.id.amountText);
-        timeText = findViewById(R.id.timeText);
         entryButton = findViewById(R.id.entryButton);
         entryButton.setOnClickListener(this);
     }
 
     public void onClick(View view) {
-        amount = Integer.parseInt(amountInput.getText().toString());
-        time = Integer.parseInt(timeInput.getText().toString());
+        amount = amountInput.getText().toString();
+        time = timeInput.getText().toString();
+        list.add(amount + "," + time);
         if (view.getId() == R.id.entryButton) {
+            TableLayout tbl1 = (TableLayout) findViewById(R.id.tbl1);
+            TableRow tblRow1 = new TableRow(this);
+            TextView amountText = new TextView(this);
+            TextView timeText = new TextView(this);
             amountText.setText("Amount: " + amount);
-            timeText.setText("Time: " + time);
+            amountText.setTextSize(25);
+            timeText.setText(" Time: " + time);
+            timeText.setTextSize(25);
+            tblRow1.addView(amountText);
+            tblRow1.addView(timeText);
+            tbl1.addView(tblRow1);
         }
+
+        /*
         ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.constraintLayout);
         Button btnTag = new Button(this);
         btnTag.setLayoutParams((ViewGroup.LayoutParams) );
         btnTag.setText();
         btnTag.setId();
         layout.addView(btnTag);
+         */
     }
     /*
     public int[] sort() {
