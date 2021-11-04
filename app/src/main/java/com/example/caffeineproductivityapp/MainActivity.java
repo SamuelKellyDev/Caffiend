@@ -12,6 +12,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         entryButton = findViewById(R.id.entryButton);
         entryButton.setOnClickListener(this);
     }
-
+    // This method gets called everytime a button is clicked
     public void onClick(View view) {
         amount = amountInput.getText().toString();
         time = timeInput.getText().toString();
@@ -39,13 +41,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId() == R.id.entryButton) {
             TableLayout tbl1 = (TableLayout) findViewById(R.id.tbl1);
             TableRow tblRow1 = new TableRow(this);
-            TextView amountText = new TextView(this);
-            TextView timeText = new TextView(this);
-            amountText.setText("Amount: " + amount);
+            TextView amountText1 = new TextView(this);
+            TextView timeText1 = new TextView(this);
+            EditText amountText = new EditText(this);
+            EditText timeText = new EditText(this);
+            amountText1.setText("Amount: ");
+            timeText1.setText("Time: ");
+            amountText.setText(amount);
             amountText.setTextSize(25);
-            timeText.setText(" Time: " + time);
+            timeText.setText(time);
             timeText.setTextSize(25);
+            tblRow1.addView(amountText1);
             tblRow1.addView(amountText);
+            tblRow1.addView(timeText1);
             tblRow1.addView(timeText);
             tbl1.addView(tblRow1);
         }
