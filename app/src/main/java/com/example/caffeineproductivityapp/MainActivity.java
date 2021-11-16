@@ -91,9 +91,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             IDlist.add(new int[]{deleteButton.getId(), tblRow1.getId()});
             // replaces all text besides numbers with nothing to make for easier processing of user provided data
             for (String[] i: dataList) {
-                for (int j = 0; j < i.length; j++) {
+                for (int j = 0; j < i.length; j++)
                     i[j] = i[j].replaceAll("[^0-9]", "");
-                }
             }
             if (dataList.size() > 1)
                 sort(dataList);
@@ -107,8 +106,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             tbl1.removeView(findViewById(i[1]));
                             dataList.remove(IDlist.indexOf(i));
                             IDlist.remove(i);
-                            if (dataList.size() > 1)
-                                sort(dataList);
                             break;
                         }
                     }
@@ -150,10 +147,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     timeText1.setText(timeText2.getText().toString());
                     amountText2.setText(valueSave[0]);
                     timeText2.setText(valueSave[1]);
+                    amountText1.setId(Integer.parseInt(dataList.get(j)[2]));
+                    amountText2.setId(Integer.parseInt(dataList.get(i)[2]));
+                    timeText1.setId(Integer.parseInt(dataList.get(j)[3]));
+                    timeText2.setId(Integer.parseInt(dataList.get(i)[3]));
                     String[] iData = dataList.get(i); // stores data before switch
                     dataList.set(i, dataList.get(j));
                     dataList.set(j, iData);
-                    break;
+                    //break;
                 }
             }
         }
